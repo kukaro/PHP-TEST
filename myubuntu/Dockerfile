@@ -41,6 +41,8 @@ RUN apt-get -y install apache2
 RUN apt-get -y install php7.4
 RUN apt-get -y install libapache2-mod-php
 RUN apt-get -y install php-zip
+RUN apt-get -y install php-mbstring
+RUN apt-get -y install php-xml
 # RUN a2enmod php7.2
 
 #install composer
