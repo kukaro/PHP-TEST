@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  myubuntu:
+    image: myubuntu
+    container_name: myubuntu
+    command: /root/test/init.sh
+    volumes:
+      - ./src/:/var/www/html
+    ports:
+      - '10022:22'
+      - '10080:80'
+      - '18080:8080'
+    expose:
+      - '10022'
+      - '10080'
+      - '18080'
