@@ -30,7 +30,7 @@ RUN apt-get install -y curl
 RUN git clone https://github.com/VundleVim/Vundle.vim.git
 RUN mkdir -p /root/.vim/bundle
 RUN mv Vundle.vim /root/.vim/bundle
-ADD ./.vimrc /root/
+
 #RUN vim -c 'PluginInstall' -c 'qa!'
 #RUN cd /root/.vim/bundle/vim-prettier && npm install
 
@@ -38,16 +38,19 @@ ADD ./.vimrc /root/
 ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get -y install apache2
-RUN apt-get -y install php7.2
+RUN apt-get -y install php7.4
 RUN apt-get -y install libapache2-mod-php
+RUN apt-get -y install php-zip
 # RUN a2enmod php7.2
 
 #install composer
-RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin/ 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ 
+RUN composer global require laravel/installer
 RUN ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
-#set test file
+#set file
 ADD ./test /root/test/
+ADD ./.vimrc /root/
 
 EXPOSE 22 80 8080
 
