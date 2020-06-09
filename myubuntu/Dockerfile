@@ -17,9 +17,6 @@ RUN mkdir /root/.ssh
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#set test file
-ADD ./test /root/test/
-
 #install git, vim
 RUN apt-get update && apt-get install -y git
 RUN apt-get install -y vim
@@ -37,13 +34,20 @@ ADD ./.vimrc /root/
 #RUN vim -c 'PluginInstall' -c 'qa!'
 #RUN cd /root/.vim/bundle/vim-prettier && npm install
 
-#install
+#install apache and php
 ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get -y install apache2
 RUN apt-get -y install php7.2
 RUN apt-get -y install libapache2-mod-php
 # RUN a2enmod php7.2
+
+#install composer
+RUN curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin/ 
+RUN ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+
+#set test file
+ADD ./test /root/test/
 
 EXPOSE 22 80 8080
 
