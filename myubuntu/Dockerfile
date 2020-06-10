@@ -54,6 +54,8 @@ RUN echo "<Directory \"/var/www/html/page/public\">\nOptions Indexes FollowSymLi
 
 #set file
 ADD ./test /root/test/
+RUN touch ~/.vimrc
+RUN echo "set nu\n" >> ~/.vimrc
 # ADD ./.vimrc /root/
 
 EXPOSE 22 80 8080
