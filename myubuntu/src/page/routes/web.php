@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+require_once "hero.php";
+require_once "people.php";
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/dodo', function () {
-    return view('dodo');
-});
+Route::get('/dodo',"Dodocontroller@index");

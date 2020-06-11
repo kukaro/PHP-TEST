@@ -56,7 +56,7 @@ RUN echo "<Directory \"/var/www/html/page/public\">\nOptions Indexes FollowSymLi
 ADD ./test /root/test/
 RUN touch ~/.vimrc
 RUN echo "set nu\n" >> ~/.vimrc
-# ADD ./.vimrc /root/
+RUN a2enmod rewrite
 
 EXPOSE 22 80 8080
 
